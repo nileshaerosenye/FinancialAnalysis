@@ -1,4 +1,0 @@
-package EPS
-
-class Tuple {
-}

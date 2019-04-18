@@ -1,0 +1,4 @@
+#! /bin/sh
+
+groovyc *.groovy
+groovy readEPS.groovy
