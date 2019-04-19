@@ -4,12 +4,12 @@ package EPS
 
 StockRecords stockRecords = new StockRecords()
 
-//String Dir="/home/nileshmune/workspace/MktValModel/data/EPS"
-String Dir="/home/nileshmune/workspace/MktValModel/data/testEPS"
+String Dir="/home/nileshmune/workspace/MktValModel/data/EPS"
+//String Dir="/home/nileshmune/workspace/MktValModel/data/testEPS"
 File filesEPS = new File ( Dir )
 
+
 filesEPS.eachFile { fName ->
-    //println("Processing file : " + fName )
 
     if ( fName.toString().contains("out") ) {
 
@@ -18,7 +18,6 @@ filesEPS.eachFile { fName ->
         //println("StockRecords length " + stockRecords.getSize() )
         stockRecords.display()
     }
-
 
 }
 
@@ -41,7 +40,9 @@ StockRecords fReadEPS( File fName ) {
     int iDate, iYear
     float fEPS
     String [] sTokens
-    stockRecords.setsSymbol( fName.name )
+    float fStockPrice
+    String sSymbol = fName.name.replace(".out","")
+    stockRecords.setsSymbol( sSymbol )
 
     fName.eachLine { line ->
         if ( line.size() >= 1 ) {
@@ -54,15 +55,15 @@ StockRecords fReadEPS( File fName ) {
                 // process only recent iThreshold number of records
                 if (sTokens.size() == 3 && iCount <= iThreshold) {
 
+                    //println("Processing line : " + line)
+
                     // process this record containing format : Dec. 31, 2018, 0.86
                     sMonthDate = sTokens[0].trim()
                     iYear =  (sTokens[1].trim().length() != 0 ) ? Integer.parseInt(sTokens[1].trim()) : null
                     fEPS =   (sTokens[2].trim().length() != 0 ) ? Float.parseFloat(sTokens[2].trim()) : null
 
                     if ( sMonthDate.size() != 0 && iYear != null && fEPS != null ) {
-
                         stockRecords.AddRecord(sMonthDate + "," + iYear, fEPS)
-
                         iCount++
                     }
                 }

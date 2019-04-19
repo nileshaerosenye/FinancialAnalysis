@@ -20,5 +20,21 @@ httpURLConnection = new URL( sBase ).openConnection()
 
 result = jsonSlurper.parse(httpURLConnection.inputStream.newReader())
 
-println("RES: " + result)
-println("RES: " + result.average)
+Object outResult = null
+int day = 40
+String searchDate
+
+while ( outResult == null ) {
+
+    searchDate = "2014-04-" + day.toString()
+    println("Find : " + searchDate)
+
+    outResult = result.find { rec ->
+        rec.date == searchDate
+    }
+    day--
+
+}
+
+///println("RES: " + result)
+println("RES: " + outResult)
