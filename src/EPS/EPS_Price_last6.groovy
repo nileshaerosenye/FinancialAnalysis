@@ -4,10 +4,9 @@ package EPS
 
 StockRecords stockRecords = new StockRecords()
 
-String Dir="/home/nileshmune/workspace/MktValModel/data/EPS"
-//String Dir="/home/nileshmune/workspace/MktValModel/data/testEPS"
+//String Dir="/home/nileshmune/workspace/MktValModel/data/EPS"
+String Dir="/home/nileshmune/workspace/MktValModel/data/testEPS"
 File filesEPS = new File ( Dir )
-File fOut = new File ( "../../data/EPS_Price_last6.dat")
 
 
 filesEPS.eachFile { fName ->
@@ -17,7 +16,6 @@ filesEPS.eachFile { fName ->
         stockRecords = fReadEPS(fName)
 
         //println("StockRecords length " + stockRecords.getSize() )
-        fOut.write( fName.name )
         stockRecords.display()
     }
 

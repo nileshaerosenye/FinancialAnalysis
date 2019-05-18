@@ -9,3 +9,4 @@ https://api.iextrading.com/1.0//stock/aapl/financials
 IPO Calendar: https://api.iextrading.com/1.0/stock/market/upcoming-ipos
 Important Key Stats containing all I need: https://api.iextrading.com/1.0//stock/aapl/stats
 Get % yea historical data in Json : https://api.iextrading.com/1.0/stock/aapl/chart/5y
+Current Stock Price : https://api.iextrading.com/1.0/stock/aapl/price
